@@ -1,3 +1,20 @@
+> [!WARNING]
+> **Please be mindful about using this. Don't set it every session.**
+>
+> The default context limits exist for a reason. They keep cost, speed and answer quality in a sensible range, and
+> they're where the models were tuned and tested. Only raise a limit **intentionally and when you really need to**,
+> for example when you're close to finishing a big task and don't want to risk the quality loss of a compaction
+> right at the end.
+>
+> **Context rot is real, and it differs by model.**
+> - Some models work better *after* a compaction. A long, cluttered context can degrade them more than a clean
+>   summary does, so deferring compaction can make them worse, not better.
+> - Others, such as Opus 5.5, may cope with long contexts better and do well with more headroom.
+>
+> Know which kind of model you're on before overriding. Raising the limit also raises cost per turn (every turn
+> re-reads the whole context) and can hit provider limits or long-context price tiers. If you find yourself
+> overriding by default, the standard limit is probably the right setting for that model.
+
 # opencode-context-override
 
 An OpenCode **v2** plugin that temporarily changes the context window limit for **one session**, so auto-compaction
