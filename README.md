@@ -12,8 +12,8 @@
 > - Others, such as Opus 5.5, may cope with long contexts better and do well with more headroom.
 >
 > Know which kind of model you're on before overriding. Raising the limit also raises cost per turn (every turn
-> re-reads the whole context) and can hit provider limits or long-context price tiers. If you find yourself
-> overriding by default, the standard limit is probably the right setting for that model.
+> re-reads the whole context) and can hit provider limits or long-context price tiers. This is for occasional
+> exceptions. If you're overriding in most sessions, stop and leave the standard limit alone.
 
 # opencode-context-override
 
