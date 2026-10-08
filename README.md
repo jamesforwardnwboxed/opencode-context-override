@@ -13,7 +13,12 @@
 >
 > Know which kind of model you're on before overriding. Raising the limit also raises cost per turn (every turn
 > re-reads the whole context) and can hit provider limits or long-context price tiers. This is for occasional
-> exceptions. If you're overriding in most sessions, stop and leave the standard limit alone.
+> exceptions.
+>
+> **If you're overriding a lot, change your ways of working instead.** Prioritise shorter, fresh sessions: break big
+> tasks into smaller pieces, start a new session when the task changes, and carry over only what's needed (a short
+> summary or a written plan) instead of dragging one huge context along. Needing a bigger window in most sessions is a
+> sign the sessions are too long, not that the limit is too small.
 
 # opencode-context-override
 
