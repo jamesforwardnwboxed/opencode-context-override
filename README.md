@@ -13,25 +13,28 @@ Tested against OpenCode 2.0.25. It uses v2 plugin APIs and will not work on v1.
 
 ## Install
 
+Clone it anywhere (not directly into the OpenCode config dir) and run:
+
 ```sh
-git clone git@github.com:jamesforwardnwboxed/opencode-context-override.git ~/.config/opencode/plugins/context-override
+git clone git@github.com:jamesforwardnwboxed/opencode-context-override.git
+cd opencode-context-override
+make install
 ```
 
-Then turn off the built-in Context block, so there aren't two. Add `-opencode.sidebar.context` to the `plugins` array
-in `~/.config/opencode/cli.json`:
+`make install` does two things:
 
-```jsonc
-{
-  "plugins": [
-    // ...your existing plugins...
-    "-opencode.sidebar.context"
-  ]
-}
-```
+1. Copies the plugin files into `~/.config/opencode/plugins/context-override/` (or
+   `$XDG_CONFIG_HOME/opencode/...`; override with `make install OPENCODE_CONFIG_DIR=/some/dir`).
+2. Adds `"-opencode.sidebar.context"` to the `plugins` array in `cli.json`, which turns off the built-in Context
+   block. Without that you'd see two Context blocks: a plugin can add to the sidebar but can't edit the built-in
+   block. Your other settings and plugins in `cli.json` are left as they are. It's idempotent, and if `cli.json`
+   contains comments it won't touch it and tells you what to add by hand.
 
-If this plugin ever fails to load, that block disappears with it. Delete the line to get it back.
+Re-run `make install` after pulling changes. `make uninstall` removes the plugin and the `cli.json` entry, which
+brings the built-in block back. If this plugin ever fails to load, the built-in block stays disabled until you
+uninstall.
 
-Reload:
+Then reload:
 
 - **Server half** (`index.js`): hot-loads when the files change, no restart needed. If it doesn't, run
   `opencode reload`. Avoid `opencode service restart` unless you have to; it restarts the shared service and
@@ -81,7 +84,7 @@ settings and pricing, with `limit.context` set to your number and `limit.input` 
 ## Develop
 
 ```sh
-node check.mjs   # unit checks for the parsing and limit maths
+make check   # unit checks for the parsing and limit maths
 ```
 
 The server half can be tried without touching your running service: start a private server with throwaway config
